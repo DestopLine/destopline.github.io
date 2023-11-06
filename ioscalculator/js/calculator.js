@@ -7,7 +7,7 @@ let simpleClear = false;
 let previewing = false;
 let isOperatorHighlighted = false;
 
-const screen = document.querySelector(".screen");
+const screen = document.querySelector(".screen-text");
 
 // Adds commas to the buffer and returns it as a new string
 function formatBuffer(buf) {
@@ -33,6 +33,13 @@ function formatBuffer(buf) {
 function flushBuffer() {
     let fBuffer = buffer.length > 3 ? formatBuffer(buffer) : buffer;
     screen.innerText = fBuffer;
+
+    // Make the text smaller as the number grows
+    if (screen.scrollWidth > screen.offsetWidth) {
+        screen.classList.add("small-screen");
+    } else if (buffer === "0") {
+        screen.classList.remove("small-screen");
+    }
     
     // Toggles the clear button between AC and C
     const clearButton = document.querySelector("#btn-clear")
