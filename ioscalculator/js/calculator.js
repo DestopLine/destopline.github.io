@@ -9,8 +9,30 @@ let isOperatorHighlighted = false;
 
 const screen = document.querySelector(".screen");
 
+// Adds commas to the buffer and returns it as a new string
+function formatBuffer(buf) {
+    let negative = buf[0] === "-";
+    if (negative) {
+        buf = buf.slice(1);
+    }
+    return buf
+        .split(".")
+        .map((str, index) => {
+            if (index === 0) {
+                let newStr = [];
+                for (let i = str.length; i > 0; i -= 3) {
+                    const offset = i-3 >= 0 ? i-3 : 0;
+                    newStr.push(str.slice(offset, i));
+                }
+                return (negative ? "-" : "") + newStr.reverse().join(",");
+            } else return str;
+        })
+        .join(".");
+}
+
 function flushBuffer() {
-    screen.innerText = buffer;
+    let fBuffer = buffer.length > 3 ? formatBuffer(buffer) : buffer;
+    screen.innerText = fBuffer;
     
     // Toggles the clear button between AC and C
     const clearButton = document.querySelector("#btn-clear")
