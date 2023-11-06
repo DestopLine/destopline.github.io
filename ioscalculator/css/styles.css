@@ -1,5 +1,6 @@
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    background-color: rgb(49, 44, 61);
 }
 
 .wrapper {
@@ -29,7 +30,9 @@ body {
     width: 85px;
     height: 85px;
     margin: 7px;
-    transition: background-color 0.5s ease;
+    transition: 
+        background-color 0.5s ease,
+        color 0.5s ease;
 }
 
 .double {
@@ -72,11 +75,12 @@ body {
     font-weight: bold;
 }
 
-.operator:hover {
+.unselected:hover {
     background-color:#f8ba0e;
 }
 
-.operator:active {
-    background-color: rgb(255, 240, 108);
+.selected, #btn-equals:active {
+    background-color: white;
+    color: #ff9f0a;
     transition: background-color 0.05s ease;
 }
