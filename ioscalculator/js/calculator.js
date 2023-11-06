@@ -36,9 +36,12 @@ function flushBuffer() {
 
     // Make the text smaller as the number grows
     if (screen.scrollWidth > screen.offsetWidth) {
+        if (screen.classList.contains("small-screen")) {
+            screen.classList.add("visible-scrollbar");
+        }
         screen.classList.add("small-screen");
     } else if (buffer === "0") {
-        screen.classList.remove("small-screen");
+        screen.classList.remove("small-screen", "visible-scrollbar");
     }
     
     // Toggles the clear button between AC and C

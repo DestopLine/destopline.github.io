@@ -31,9 +31,13 @@ body {
 .screen-text {
     overflow-x: scroll;
     display: block;
-    transition: font-size 0.4s;
-    scrollbar-color: #333333 black;
+    transition: font-size 0.4s, scrollbar-color 0.4s;
+    scrollbar-color: black black;
     scrollbar-width: thin;
+}
+
+.screen-text.visible-scrollbar {
+    scrollbar-color: #333333 black;
 }
 
 .screen-text.small-screen {
