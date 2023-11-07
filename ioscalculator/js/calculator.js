@@ -195,7 +195,6 @@ function handleClick(event) {
     }
 
     flushBuffer();
-    console.log("Total:", runningTotal);
 }
 
 function init() {
