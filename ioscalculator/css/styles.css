@@ -1,10 +1,31 @@
 :root {
     --clr-scrollbar-thumb: black;
+
+    --clr-body-background: #312c3d;
+    --clr-calc-background: black;
+
+    --clr-text-light: white;
+    --clr-text-dark: black;
+
+    --clr-button-numeric: #333333;
+    --clr-button-functional: #a5a5a5;
+    --clr-button-operator: #ff9f0a;
+
+    --clr-button-numeric-hover: #3d3d3d;
+    --clr-button-functional-hover: #c9c9c9;
+    --clr-button-operator-hover: #f8ba0e;
+
+    --clr-button-numeric-active: #7e7e7e;
+    --clr-button-functional-active: white;
+    --clr-button-operator-active: white;
+
+    --button-diameter: 85px;
+    --scrollbar-height: 6px; /* Only for Chromium */
 }
 
 body {
     font-family: Roboto, Arial, Helvetica, sans-serif;
-    background-color: rgb(49, 44, 61);
+    background-color: var(--clr-body-background);
     margin: 1rem 0;
 }
 
@@ -15,18 +36,16 @@ body {
     margin: 0 auto;
     width: fit-content;
     padding: 0 1.3rem 5rem 1.3rem;
-    background-color: black;
+    background-color: var(--clr-calc-background);
     border-radius: 60px;
 }
 
 .screen {
     grid-row: span 1;
     display: flex;
-    flex-wrap: wrap;
     justify-content: flex-end;
     align-items: flex-end;
-    color: white;
-    text-align: end;
+    color: var(--clr-text-light);
     font-size: 6rem;
     font-weight: 300;
     margin: 100px 25px 0 25px;
@@ -34,26 +53,25 @@ body {
 
 .screen-text {
     overflow-x: scroll;
-    display: block;
     transition: font-size 0.4s, scrollbar-color 0.4s;
     /* Firefox scrollbar styling */
-    scrollbar-color: black black;
+    scrollbar-color: var(--clr-calc-background) var(--clr-calc-background);
     scrollbar-width: thin;
 }
 
 .screen-text.visible-scrollbar {
-    scrollbar-color: #333333 black;
+    scrollbar-color: var(--clr-button-numeric) var(--clr-calc-background);
 }
 
 /* Chrome scrollbar styling */
 .screen-text::-webkit-scrollbar {
     background-color: black;
-    height: 6px;
+    height: var(--scrollbar-height);
 }
 
 .screen-text::-webkit-scrollbar-thumb {
     background-color: var(--clr-scrollbar-thumb);
-    border-radius: 3px;
+    border-radius: calc(var(--scrollbar-height) / 2);
 }
 
 .screen-text.small-screen {
@@ -76,11 +94,11 @@ body {
 
 .calc-button {
     border: none;
-    border-radius: 42.5px;
+    border-radius: calc(var(--button-diameter) / 2);
     font-family: inherit;
     font-size: 2.8rem;
-    width: 85px;
-    height: 85px;
+    width: var(--button-diameter);
+    height: var(--button-diameter);
     margin: 0;
     padding: 0;
     transition: 
@@ -96,44 +114,44 @@ body {
 }
 
 .numeric {
-    color: white;
-    background-color: #333333;
+    color: var(--clr-text-light);
+    background-color: var(--clr-button-numeric);
 }
 
 .numeric:hover {
-    background-color: #3d3d3d;
+    background-color: var(--clr-button-numeric-hover);
 }
 
 .numeric:active {
-    background-color: #7e7e7e;
+    background-color: var(--clr-button-numeric-active);
     transition: background-color 0.05s ease;
 }
 
 .functional {
-    color: black;
-    background-color: #a5a5a5;
+    color: var(--clr-text-dark);
+    background-color: var(--clr-button-functional);
 }
 
 .functional:hover {
-    background-color: #c9c9c9;
+    background-color: var(--clr-button-functional-hover);
 }
 
 .functional:active {
-    background-color: white;
+    background-color: var(--clr-button-functional-active);
     transition: background-color 0.05s ease;
 }
 
 .operator {
-    color: white;
-    background-color: #ff9f0a;
+    color: var(--clr-text-light);
+    background-color: var(--clr-button-operator);
 }
 
 .unselected:hover {
-    background-color:#f8ba0e;
+    background-color: var(--clr-button-operator-hover);
 }
 
 .selected, #btn-equals:active {
-    background-color: white;
-    color: #ff9f0a;
+    background-color: var(--clr-button-operator-active);
+    color: var(--clr-button-operator);
     transition: background-color 0.05s ease;
 }

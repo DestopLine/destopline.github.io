@@ -15,7 +15,7 @@ function formatBuffer(buf) {
     if (negative) {
         buf = buf.slice(1);
     }
-    return buf
+    return (negative ? "-" : "") + buf
         .split(".")
         .map((str, index) => {
             if (index === 0) {
@@ -24,29 +24,28 @@ function formatBuffer(buf) {
                     const offset = i-3 >= 0 ? i-3 : 0;
                     newStr.push(str.slice(offset, i));
                 }
-                return (negative ? "-" : "") + newStr.reverse().join(",");
+                return newStr.reverse().join(",");
             } else return str;
         })
         .join(".");
 }
 
 function flushBuffer() {
-    let fBuffer = buffer.length > 3 ? formatBuffer(buffer) : buffer;
-    screen.innerText = fBuffer;
+    screen.innerText = buffer.length > 3 ? formatBuffer(buffer) : buffer;
 
-    // Make the text smaller as the number grows
     if (screen.scrollWidth > screen.offsetWidth) {
         if (screen.classList.contains("small-screen")) {
-            screen.classList.add("visible-scrollbar");
-            document.documentElement.style.setProperty("--clr-scrollbar-thumb", "#333333");
+            // Make the scrollbar visible for...
+            screen.classList.add("visible-scrollbar"); // Firefox
+            document.documentElement.style.setProperty("--clr-scrollbar-thumb", "#333333"); // Chromium
         }
         screen.classList.add("small-screen");
     } else if (buffer === "0") {
-        screen.classList.remove("small-screen", "visible-scrollbar");
-        document.documentElement.style.setProperty("--clr-scrollbar-thumb", "black");
+        // Make the scrollbar invisible for...
+        screen.classList.remove("small-screen", "visible-scrollbar"); // Firefox
+        document.documentElement.style.setProperty("--clr-scrollbar-thumb", "black"); // Chromium
     }
     
-    // Toggles the clear button between AC and C
     const clearButton = document.querySelector("#btn-clear")
     if (buffer === "0") {
         simpleClear = false;
@@ -139,8 +138,10 @@ function handleOperator(btnId) {
 }
 
 function handleClick(event) {
+    if (event.target.tagName !== "BUTTON") return;
+
     switch (event.target.id) {
-        case "":
+        case "": // Numbers don't have any id
             handleNumber(event.target.innerText);
             break;
             
@@ -157,18 +158,12 @@ function handleClick(event) {
             break;
 
         case "btn-plusminus":
-            if (buffer !== "0") {
-                buffer = buffer[0] === "-" ? buffer.substring(1) : "-" + buffer;
-            }
-            if (previewing) {
-                runningTotal = Number(buffer);
-            }
-            disableSelectedOperator();
-            break;
-        
         case "btn-percent":
-            if (buffer !== "0" && buffer[buffer.length-1] !== ".") {
-                buffer = String((Number(buffer) / 100));
+            if (buffer !== "0") {
+                if (event.target.id === "btn-plusminus")
+                    buffer = buffer[0] === "-" ? buffer.substring(1) : "-" + buffer;
+                else
+                    buffer = String((Number(buffer) / 100));
             }
             if (previewing) {
                 runningTotal = Number(buffer);
@@ -204,11 +199,8 @@ function handleClick(event) {
 }
 
 function init() {
-    document.querySelector(".button-pad").addEventListener("click", event => {
-        if (event.target.tagName === "BUTTON") {
-            handleClick(event);
-        }
-    });
+    document.querySelector(".button-pad")
+        .addEventListener("click", handleClick);
 }
 
 init();
