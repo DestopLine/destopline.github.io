@@ -1,3 +1,7 @@
+:root {
+    --clr-scrollbar-thumb: black;
+}
+
 body {
     font-family: Roboto, Arial, Helvetica, sans-serif;
     background-color: rgb(49, 44, 61);
@@ -32,12 +36,24 @@ body {
     overflow-x: scroll;
     display: block;
     transition: font-size 0.4s, scrollbar-color 0.4s;
+    /* Firefox scrollbar styling */
     scrollbar-color: black black;
     scrollbar-width: thin;
 }
 
 .screen-text.visible-scrollbar {
     scrollbar-color: #333333 black;
+}
+
+/* Chrome scrollbar styling */
+.screen-text::-webkit-scrollbar {
+    background-color: black;
+    height: 6px;
+}
+
+.screen-text::-webkit-scrollbar-thumb {
+    background-color: var(--clr-scrollbar-thumb);
+    border-radius: 3px;
 }
 
 .screen-text.small-screen {
@@ -110,7 +126,6 @@ body {
 .operator {
     color: white;
     background-color: #ff9f0a;
-    font-weight: bold;
 }
 
 .unselected:hover {

@@ -38,10 +38,12 @@ function flushBuffer() {
     if (screen.scrollWidth > screen.offsetWidth) {
         if (screen.classList.contains("small-screen")) {
             screen.classList.add("visible-scrollbar");
+            document.documentElement.style.setProperty("--clr-scrollbar-thumb", "#333333");
         }
         screen.classList.add("small-screen");
     } else if (buffer === "0") {
         screen.classList.remove("small-screen", "visible-scrollbar");
+        document.documentElement.style.setProperty("--clr-scrollbar-thumb", "black");
     }
     
     // Toggles the clear button between AC and C
