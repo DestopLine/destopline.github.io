@@ -1,6 +1,4 @@
 :root {
-    --clr-scrollbar-thumb: black;
-
     --clr-body-background: #312c3d;
     --clr-calc-background: black;
 
@@ -53,29 +51,30 @@ body {
 
 .screen-text {
     overflow-x: scroll;
-    transition: font-size 0.4s, scrollbar-color 0.4s;
+    transition: font-size 0.4s, scrollbar-color 0.4s ease 0.3s;
     /* Firefox scrollbar styling */
     scrollbar-color: var(--clr-calc-background) var(--clr-calc-background);
     scrollbar-width: thin;
 }
 
-.screen-text.visible-scrollbar {
-    scrollbar-color: var(--clr-button-numeric) var(--clr-calc-background);
+.screen-text.small-screen {
+    font-size: 3.5rem;
+    scrollbar-color: var(--clr-button-numeric-active) var(--clr-calc-background);
 }
 
 /* Chrome scrollbar styling */
 .screen-text::-webkit-scrollbar {
-    background-color: black;
+    background-color: var(--clr-calc-background);
     height: var(--scrollbar-height);
 }
 
 .screen-text::-webkit-scrollbar-thumb {
-    background-color: var(--clr-scrollbar-thumb);
+    background-color: var(--clr-calc-background);
     border-radius: calc(var(--scrollbar-height) / 2);
 }
 
-.screen-text.small-screen {
-    font-size: 3.5rem;
+.small-screen::-webkit-scrollbar-thumb {
+    background-color: var(--clr-button-numeric-active);
 }
 
 .button-pad {

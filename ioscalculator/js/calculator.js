@@ -34,16 +34,9 @@ function flushBuffer() {
     screen.innerText = buffer.length > 3 ? formatBuffer(buffer) : buffer;
 
     if (screen.scrollWidth > screen.offsetWidth) {
-        if (screen.classList.contains("small-screen")) {
-            // Make the scrollbar visible for...
-            screen.classList.add("visible-scrollbar"); // Firefox
-            document.documentElement.style.setProperty("--clr-scrollbar-thumb", "#333333"); // Chromium
-        }
         screen.classList.add("small-screen");
     } else if (buffer === "0") {
-        // Make the scrollbar invisible for...
-        screen.classList.remove("small-screen", "visible-scrollbar"); // Firefox
-        document.documentElement.style.setProperty("--clr-scrollbar-thumb", "black"); // Chromium
+        screen.classList.remove("small-screen");
     }
     
     const clearButton = document.querySelector("#btn-clear")
