@@ -120,7 +120,7 @@ function handleOperator(btnId) {
         prevOperator = selectedOperator;
         if (!selectedOperator) {
             runningTotal = Number(buffer);
-            buffer = "0";
+            previewing = true;
         } else {
             flushOperator();
         }
@@ -174,7 +174,7 @@ function handleClick(event) {
             break;
 
         case "btn-equals":
-            if (!previewing) {
+            if (!previewing || !prevOperator) {
                 prevNumber = Number(buffer);
             }
             if (!selectedOperator) {
@@ -183,6 +183,7 @@ function handleClick(event) {
             }
             flushOperator();
             prevOperator = selectedOperator;
+            disableSelectedOperator();
             selectedOperator = null;
             break;
     }
