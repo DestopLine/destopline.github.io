@@ -129,9 +129,11 @@ button.double {
     transition: background-color 0.05s ease;
 }
 
-.functional {
+button.functional {
     color: var(--clr-text-dark);
     background-color: var(--clr-button-functional);
+    font-size: 2.5rem;
+    font-weight: 500;
 }
 
 .functional:hover {
