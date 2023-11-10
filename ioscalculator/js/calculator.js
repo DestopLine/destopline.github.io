@@ -150,6 +150,7 @@ function handleClick(event) {
                 selectedOperator = null;
                 previewing = false;
             }
+            enableSelectedOperator();
             break;
 
         case "btn-plusminus":
