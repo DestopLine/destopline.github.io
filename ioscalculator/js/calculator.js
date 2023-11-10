@@ -11,7 +11,8 @@ const screen = document.querySelector(".screen-text");
 
 // Adds commas to the buffer and returns it as a new string
 function formatBuffer(buf) {
-    let negative = buf[0] === "-";
+    if (buf.length < 4) return buf;
+    const negative = buf[0] === "-";
     if (negative) {
         buf = buf.slice(1);
     }
@@ -31,7 +32,7 @@ function formatBuffer(buf) {
 }
 
 function flushBuffer() {
-    screen.innerText = buffer.length > 3 ? formatBuffer(buffer) : buffer;
+    screen.innerText = formatBuffer(buffer);
 
     if (screen.scrollWidth > screen.offsetWidth) {
         screen.classList.add("small-screen");
