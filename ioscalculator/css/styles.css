@@ -51,7 +51,7 @@ body {
 
 .screen-text {
     overflow-x: scroll;
-    transition: font-size 0.4s, scrollbar-color 0.4s ease 0.3s;
+    transition: font-size 0.4s, scrollbar-color 0.4s;
     /* Firefox scrollbar styling */
     scrollbar-color: var(--clr-calc-background) var(--clr-calc-background);
     scrollbar-width: thin;
@@ -59,6 +59,9 @@ body {
 
 .screen-text.small-screen {
     font-size: 3.5rem;
+}
+
+.visible-scrollbar {
     scrollbar-color: var(--clr-button-numeric-active) var(--clr-calc-background);
 }
 
@@ -73,7 +76,7 @@ body {
     border-radius: calc(var(--scrollbar-height) / 2);
 }
 
-.small-screen::-webkit-scrollbar-thumb {
+.visible-scrollbar::-webkit-scrollbar-thumb {
     background-color: var(--clr-button-numeric-active);
 }
 

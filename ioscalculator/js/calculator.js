@@ -35,9 +35,10 @@ function flushBuffer() {
     screen.innerText = formatBuffer(buffer);
 
     if (screen.scrollWidth > screen.offsetWidth) {
+        setTimeout(() => screen.classList.add("visible-scrollbar"), 400)
         screen.classList.add("small-screen");
     } else if (buffer === "0") {
-        screen.classList.remove("small-screen");
+        screen.classList.remove("small-screen", "visible-scrollbar");
     }
     
     const clearButton = document.querySelector("#btn-clear")
